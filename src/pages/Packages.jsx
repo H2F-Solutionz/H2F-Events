@@ -1,9 +1,238 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Packages() {
+  const packagesList = [
+    {
+      id: 'pinkish-sunset-city-cruise',
+      name: 'Pinkish Sunset City Cruise',
+      img: '/media/imagef601.jpg',
+      alt: 'Pinkish Sunset City Cruise - Romantic cruise package in Jaffna by H2F Events'
+    },
+    {
+      id: 'golden-shore-promise',
+      name: 'Golden Shore Promise',
+      img: '/media/imaged68b.jpg',
+      alt: 'Golden Shore Promise - Beachside proposal and wedding packages in Jaffna'
+    },
+    {
+      id: 'scarlet-fairy-garden',
+      name: 'Scarlet Fairy Garden',
+      img: '/media/image835c.jpg',
+      alt: 'Scarlet Fairy Garden - Luxury floral outdoor event setup in Jaffna'
+    },
+    {
+      id: 'pinky-love-rose',
+      name: 'Pinky Love Rose',
+      img: '/media/image1002.jpg',
+      alt: 'Pinky Love Rose - Elegant anniversary and birthday planner package Jaffna'
+    }
+  ];
+
+  const addOns = [
+    {
+      name: 'Photography Package 1',
+      img: '/media/imagef6f5.jpg',
+      alt: 'Professional photographer for events in Jaffna - H2F Events',
+      features: ['Unlimited Photographs', 'Drive Link', '1 Photographer']
+    },
+    {
+      name: 'Photography Package 2',
+      img: '/media/image6b50.jpg',
+      alt: 'Premium multi-photographer package in Sri Lanka - H2F Events',
+      features: ['2 Photographers', 'Drive Link', 'Lighting', 'Unlimited Photographs']
+    },
+    {
+      name: 'Videography Package 1',
+      img: '/media/image6c4f.jpg',
+      alt: 'Event videographer and editor in Jaffna - H2F Events',
+      features: ['1 Videographer', '3 min Aftermovie', 'Drive Link']
+    },
+    {
+      name: 'Videography Package 2',
+      img: '/media/image896f.jpg',
+      alt: 'Premium wedding aftermovie and drone videography in Jaffna Sri Lanka',
+      features: ['2 Videographers', '4 min Aftermovie', 'Drive Link', 'Drone Videographer']
+    }
+  ];
+
+  const services = [
+    { name: 'Full scale conceptualization - Creating theme / style / color', img: '/media/imaged2b9.jpg' },
+    { name: 'Budget Tracking & Management', img: '/media/image5035.jpg' },
+    { name: 'Venue Search & Selection', img: '/media/image5b05.jpg' },
+    { name: 'Deco & Venue arrangement', img: '/media/imagef7a3.jpg' },
+    { name: 'Design & management of invitations', img: '/media/imagee18b.jpg' },
+    { name: 'Guide & assist on Caterer / Menu & Cake selection', img: '/media/imagec621.jpg' },
+    { name: 'Entertainment management – innovative games/music /DJ/Band', img: '/media/image3f0f.jpg' },
+    { name: 'Handling Party rentals', img: '/media/imaged8b9.jpg' },
+    { name: 'Booking of party accessories to match the theme', img: '/media/image48a5.jpg' },
+    { name: 'Vendor Matching & Selection', img: '/media/image7dea.jpg' },
+    { name: 'Handling of Cutouts / Sign boards / Backdrops to match theme', img: '/media/imagebcb3.jpg' },
+    { name: 'Comprehensive day of the event coordination', img: '/media/image5bf2.jpg' }
+  ];
+
   return (
     <>
-      <nav className="bg-secondary-blue py-4 px-8 fixed top-0 w-full hidden md:flex justify-between items-center z-40 text-primary-white"><a className="w-fit h-fit" href="index.html"><img alt="Logo" loading="lazy" width="50" height="50" decoding="async" data-nimg="1" className="w-[140px] h-auto" style={{"color":"transparent"}} src="/media/logo.7619682b.svg" /></a><div className="flex justify-center items-center gap-6"><a className="text-lg font-ostrovsky uppercase font-semibold" href="packages.html">packages</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="about-us.html">about us</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="gallery.html">gallery</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="book-now.html">Book Now</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="blog.html">blog</a><a className="bg-primary-white px-3 py-1 rounded-md text-secondary-blue uppercase font-semibold text-lg font-ostrovsky hover:bg-primary-blue hover:text-primary-white transition-colors" href="create-custom.html">Custom Package</a></div></nav><nav className="flex items-center justify-between md:hidden py-3 px-2 z-40 fixed top-0 w-full"><div className="w-fit text-secondary-blue px-2 relative"><svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect y="7" width="24" height="2" fill="currentColor"></rect><rect y="15" width="24" height="2" fill="currentColor"></rect></svg></div><a href="index.html"><img alt="Logo" loading="lazy" width="200" height="200" decoding="async" data-nimg="1" className="w-[90px]" style={{"color":"transparent"}} srcSet="" src="/media/imageb70d.png" /></a></nav><section className="md:py-28 py-16 md:px-10 px-4 space-y-20"><section><div className="py-4"><h2 className="heading-2 text-primary-blue text-center uppercase">Packages</h2></div><div className="grid grid-cols-2 md:grid-cols-4 gap-6"><a href="packages/pinkish-sunset-city-cruise.html"><div className="" style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><div><img alt="Pinkish Sunset City Cruise" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="object-cover rounded-md md:rounded-lg aspect-square bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/imagef601.jpg" /></div><div className="pl-1 pt-2 text-primary-blue text-center md:text-base text-sm"><p className="font-semibold">Pinkish Sunset City Cruise</p></div></div></a><a href="packages/golden-shore-promise.html"><div className="" style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><div><img alt="Golden Shore Promise" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="object-cover rounded-md md:rounded-lg aspect-square bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/imaged68b.jpg" /></div><div className="pl-1 pt-2 text-primary-blue text-center md:text-base text-sm"><p className="font-semibold">Golden Shore Promise</p></div></div></a><a href="packages/scarlet-fairy-garden.html"><div className="" style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><div><img alt="Scarlet Fairy Garden" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="object-cover rounded-md md:rounded-lg aspect-square bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/image835c.jpg" /></div><div className="pl-1 pt-2 text-primary-blue text-center md:text-base text-sm"><p className="font-semibold">Scarlet Fairy Garden</p></div></div></a><a href="packages/pinky-love-rose.html"><div className="" style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><div><img alt="Pinky Love Rose" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="object-cover rounded-md md:rounded-lg aspect-square bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/image1002.jpg" /></div><div className="pl-1 pt-2 text-primary-blue text-center md:text-base text-sm"><p className="font-semibold">Pinky Love Rose</p></div></div></a></div><div className="flex items-center justify-center my-8 gap-6"><button className="bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white px-4 py-2 rounded-md md:rounded-lg"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M401.4 224h-214l83-79.4c11.9-12.5 11.9-32.7 0-45.2s-31.2-12.5-43.2 0L89 233.4c-6 5.8-9 13.7-9 22.4v.4c0 8.7 3 16.6 9 22.4l138.1 134c12 12.5 31.3 12.5 43.2 0 11.9-12.5 11.9-32.7 0-45.2l-83-79.4h214c16.9 0 30.6-14.3 30.6-32 .1-18-13.6-32-30.5-32z"></path></svg></button><button className="bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white px-4 py-2 rounded-md md:rounded-lg"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M284.9 412.6l138.1-134c6-5.8 9-13.7 9-22.4v-.4c0-8.7-3-16.6-9-22.4l-138.1-134c-12-12.5-31.3-12.5-43.2 0-11.9 12.5-11.9 32.7 0 45.2l83 79.4h-214c-17 0-30.7 14.3-30.7 32 0 18 13.7 32 30.6 32h214l-83 79.4c-11.9 12.5-11.9 32.7 0 45.2 12 12.5 31.3 12.5 43.3 0z"></path></svg></button></div><div className="flex gap-5 items-center justify-center"><div className="md:p-2 p-1 rounded-full transition-colors bg-secondary-blue"></div><div className="md:p-2 p-1 rounded-full transition-colors bg-secondary-blue/30"></div><div className="md:p-2 p-1 rounded-full transition-colors bg-secondary-blue/30"></div></div></section><section className="space-y-8"><div><h3 className="heading-2 text-center text-secondary-blue">Add-ons</h3></div><div className="grid grid-cols-2 md:grid-cols-4 gap-6"><div style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><img alt="photographer" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="aspect-square object-cover rounded-md bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/imagef6f5.jpg" /><div className="px-2"><p className="font-semibold text-primary-blue text-xl mt-2 mb-4">Photography Package 1</p><div className="flex flex-wrap gap-1 py-3"><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Unlimited Photographs</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Drive Link</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">1 Photographer</span></div></div></div><div style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><img alt="photographer" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="aspect-square object-cover rounded-md bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/image6b50.jpg" /><div className="px-2"><p className="font-semibold text-primary-blue text-xl mt-2 mb-4">Photography Package 2</p><div className="flex flex-wrap gap-1 py-3"><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">2 Photographers</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Drive Link</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Lighting</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Unlimited Photographs</span></div></div></div><div style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><img alt="Videographer" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="aspect-square object-cover rounded-md bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/image6c4f.jpg" /><div className="px-2"><p className="font-semibold text-primary-blue text-xl mt-2 mb-4">Videography Package 1</p><div className="flex flex-wrap gap-1 py-3"><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">1 Videographer</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">3 min Aftermovie</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Drive Link</span></div></div></div><div style={{"clipPath":"inset(0 100% 0 0 round 10px)"}}><img alt="Videographer" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="aspect-square object-cover rounded-md bg-gray-200" style={{"color":"transparent"}} srcSet="" src="/media/image896f.jpg" /><div className="px-2"><p className="font-semibold text-primary-blue text-xl mt-2 mb-4">Videography Package 2</p><div className="flex flex-wrap gap-1 py-3"><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">2 Videographers</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">4 min Aftermovie</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Drive Link</span><span className=" bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-1 text-primary-white font-medium">Drone Videographer</span></div></div></div></div><div className="flex items-center justify-center my-8 gap-6"><button className=" bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white px-4 py-2 rounded-md md:rounded-lg"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M401.4 224h-214l83-79.4c11.9-12.5 11.9-32.7 0-45.2s-31.2-12.5-43.2 0L89 233.4c-6 5.8-9 13.7-9 22.4v.4c0 8.7 3 16.6 9 22.4l138.1 134c12 12.5 31.3 12.5 43.2 0 11.9-12.5 11.9-32.7 0-45.2l-83-79.4h214c16.9 0 30.6-14.3 30.6-32 .1-18-13.6-32-30.5-32z"></path></svg></button><button className=" bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white px-4 py-2 rounded-md md:rounded-lg"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M284.9 412.6l138.1-134c6-5.8 9-13.7 9-22.4v-.4c0-8.7-3-16.6-9-22.4l-138.1-134c-12-12.5-31.3-12.5-43.2 0-11.9 12.5-11.9 32.7 0 45.2l83 79.4h-214c-17 0-30.7 14.3-30.7 32 0 18 13.7 32 30.6 32h214l-83 79.4c-11.9 12.5-11.9 32.7 0 45.2 12 12.5 31.3 12.5 43.3 0z"></path></svg></button></div><div className="flex gap-5 items-center justify-center"><div className="p-1 rounded-full transition-colors bg-secondary-blue"></div><div className="p-1 rounded-full transition-colors bg-secondary-blue/30"></div><div className="p-1 rounded-full transition-colors bg-secondary-blue/30"></div><div className="p-1 rounded-full transition-colors bg-secondary-blue/30"></div></div></section><div className="relative md:px-20 px-4 space-y-8"><div className="w-full flex flex-col justify-center space-y-4"><h1 className="heading-2 text-primary-blue uppercase">Our Services</h1><p className="text-primary-blue md:text-lg md:w-1/2"> We offer a variety of services to make your event unforgettable, from surprise proposals and birthdays to corporate events and more.</p></div><div className="bg-primary-white z-20"><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Full scale conceptualization - Creating theme/ style / color</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/imaged2b9.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Budget Tracking &amp; Management</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/image5035.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Venue Search &amp; Selection</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/image5b05.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Deco &amp; Venue arrangement</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/imagef7a3.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Design &amp; management of invitations</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/imagee18b.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Guide &amp; assist on Caterer / Menu &amp; Cake selection</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/imagec621.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Entertainment management – innovative games/music /DJ/Band</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/image3f0f.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Handling Party rentals</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/imaged8b9.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Booking of party accessories to match the theme</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/image48a5.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Vendor Matching &amp; Selection</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/image7dea.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Handling of Cutouts / Sign boards / Backdrops to match theme</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/imagebcb3.jpg" /></div></div><div className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center"><div><p>Comprehensive day of the event coordination</p></div><div className="md:flex hidden" style={{"opacity":"0","transform":"none"}}><img loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="h-[75px] w-[250px] object-cover object-center rounded-sm" style={{"color":"transparent"}} srcSet="" src="/media/image5bf2.jpg" /></div></div></div></div></section><footer className="bg-black relative footer"><div className="w-full h-full z-20 text-primary-white py-20 md:px-10 px-4 flex md:flex-row flex-col gap-6 justify-between bg-black/60"><div className="w-fit h-full space-y-8"><a href="index.html"><img loading="lazy" width="600" height="600" decoding="async" data-nimg="1" className="object-contain w-[300px]" style={{"color":"transparent"}} src="/media/logo.7619682b.svg" /></a><div><span className="text-primary-white/70 px-4 md:text-lg font-normal">127/2 H, New Kandy road ,Siyabalapewaththa , Biyagama</span></div><div className="flex space-x-5 capitalize md:text-lg font-normal px-4  text-primary-white/70"><a className="w-fit h-fit" href="privacy-policy.html">Privacy Policy</a><a className="w-fit h-fit" href="terms-of-service.html">Terms of Service</a></div></div><div className="w-fit space-y-6"><p className="md:text-xl uppercase text-primary-white/70 font-bold">Links</p><div className="flex flex-col w-full md:text-lg text-sm uppercase gap-2 text-primary-white"><a className="font-bold w-fit" href="index.html">Home</a><a className="font-bold w-fit" href="packages.html">packages</a><a className="font-bold w-fit" href="about-us.html">about us</a><a className="font-bold w-fit" href="gallery.html">gallery</a><a className="font-bold w-fit" href="book-now.html">Book Now</a><a className="font-bold w-fit" href="blog.html">blog</a></div></div><div className="w-fit space-y-6"><p className="text-xl uppercase text-primary-white/70 font-bold">Social Medias</p><div className="flex gap-6 text-primary-white text-3xl flex-wrap items-center"><a target="_blank" rel="noreferrer" href="https://www.facebook.com/devent.eventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.instagram.com/devent.eventplanners/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/devent-team/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.youtube.com/@Deventeventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 576 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.pinterest.com/deventeventplanners/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 496 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@devent.eventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path></svg></a></div></div></div></footer>
+      <SEO
+        title="Budget & Premium Event Packages in Jaffna | H2F Events"
+        description="Explore H2F Events packages in Jaffna, Sri Lanka. From the budget-friendly Pinky Love Rose to the premium Golden Shore Promise. Photography and videography add-ons available."
+        keywords="wedding planning packages jaffna, proposal packages sri lanka, event coordinator prices jaffna, birthday packages jaffna, photography packages jaffna"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Event Planning Packages in Jaffna - H2F Events",
+          "description": "Compare budget-friendly and premium event planning packages in Jaffna, Sri Lanka.",
+          "url": "https://h2f-events.pages.dev/packages",
+          "itemListElement": packagesList.map((pkg, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "name": pkg.name,
+            "url": `https://h2f-events.pages.dev/book-now?package=${pkg.id}`
+          }))
+        }}
+      />
+      <Navbar />
+      
+      <section className="md:py-28 py-16 md:px-10 px-4 space-y-20">
+        
+        {/* Packages Grid */}
+        <section>
+          <div className="py-4">
+            <h2 className="heading-2 text-primary-blue text-center uppercase">Our Packages</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {packagesList.map((pkg) => (
+              <Link 
+                key={pkg.id} 
+                to={`/book-now?package=${pkg.id}`}
+                className="group"
+              >
+                <div style={{ "clipPath": "inset(0 0% 0 0 round 10px)" }} className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+                  <div>
+                    <img 
+                      alt={pkg.alt} 
+                      loading="lazy" 
+                      width="1200" 
+                      height="1200" 
+                      className="object-cover rounded-md md:rounded-lg aspect-square bg-gray-200" 
+                      src={pkg.img} 
+                    />
+                  </div>
+                  <div className="pl-1 pt-2 text-primary-blue text-center md:text-base text-sm">
+                    <p className="font-semibold group-hover:text-secondary-blue transition-colors">{pkg.name}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="flex items-center justify-center my-8 gap-6">
+            <button className="bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white p-2 rounded-md md:rounded-lg" aria-label="Previous page">
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M401.4 224h-214l83-79.4c11.9-12.5 11.9-32.7 0-45.2s-31.2-12.5-43.2 0L89 233.4c-6 5.8-9 13.7-9 22.4v.4c0 8.7 3 16.6 9 22.4l138.1 134c12 12.5 31.3 12.5 43.2 0 11.9-12.5 11.9-32.7 0-45.2l-83-79.4h214c16.9 0 30.6-14.3 30.6-32 .1-18-13.6-32-30.5-32z"></path>
+              </svg>
+            </button>
+            <button className="bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white p-2 rounded-md md:rounded-lg" aria-label="Next page">
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M284.9 412.6l138.1-134c6-5.8 9-13.7 9-22.4v-.4c0-8.7-3-16.6-9-22.4l-138.1-134c-12-12.5-31.3-12.5-43.2 0-11.9 12.5-11.9 32.7 0 45.2l83 79.4h-214c-17 0-30.7 14.3-30.7 32 0 18 13.7 32 30.6 32h214l-83 79.4c-11.9 12.5-11.9 32.7 0 45.2 12 12.5 31.3 12.5 43.3 0z"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <div className="flex gap-5 items-center justify-center">
+            <div className="md:p-2 p-1 rounded-full transition-colors bg-secondary-blue"></div>
+            <div className="md:p-2 p-1 rounded-full transition-colors bg-secondary-blue/30"></div>
+            <div className="md:p-2 p-1 rounded-full transition-colors bg-secondary-blue/30"></div>
+          </div>
+        </section>
+
+        {/* Add-ons Section */}
+        <section className="space-y-8">
+          <div>
+            <h3 className="heading-2 text-center text-secondary-blue">Add-ons & Media Packages</h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {addOns.map((addon, idx) => (
+              <div key={idx} style={{ "clipPath": "inset(0 0% 0 0 round 10px)" }} className="border border-slate-100 rounded-lg pb-4 shadow-sm bg-white hover:shadow-md transition-shadow">
+                <img 
+                  alt={addon.alt} 
+                  loading="lazy" 
+                  width="1200" 
+                  height="1200" 
+                  className="aspect-square object-cover rounded-t-md bg-gray-200" 
+                  src={addon.img} 
+                />
+                <div className="px-3">
+                  <p className="font-semibold text-primary-blue text-xl mt-2 mb-2">{addon.name}</p>
+                  <div className="flex flex-wrap gap-1 py-1">
+                    {addon.features.map((feature, fIdx) => (
+                      <span key={fIdx} className="bg-secondary-blue/80 md:px-2 px-1 rounded-md md:text-sm text-xs py-0.5 text-primary-white font-medium">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="flex items-center justify-center my-8 gap-6">
+            <button className="bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white p-2 rounded-md md:rounded-lg" aria-label="Previous add-on page">
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M401.4 224h-214l83-79.4c11.9-12.5 11.9-32.7 0-45.2s-31.2-12.5-43.2 0L89 233.4c-6 5.8-9 13.7-9 22.4v.4c0 8.7 3 16.6 9 22.4l138.1 134c12 12.5 31.3 12.5 43.2 0 11.9-12.5 11.9-32.7 0-45.2l-83-79.4h214c16.9 0 30.6-14.3 30.6-32 .1-18-13.6-32-30.5-32z"></path>
+              </svg>
+            </button>
+            <button className="bg-secondary-blue hover:bg-primary-blue transition-colors text-primary-white p-2 rounded-md md:rounded-lg" aria-label="Next add-on page">
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M284.9 412.6l138.1-134c6-5.8 9-13.7 9-22.4v-.4c0-8.7-3-16.6-9-22.4l-138.1-134c-12-12.5-31.3-12.5-43.2 0-11.9 12.5-11.9 32.7 0 45.2l83 79.4h-214c-17 0-30.7 14.3-30.7 32 0 18 13.7 32 30.6 32h214l-83 79.4c-11.9 12.5-11.9 32.7 0 45.2 12 12.5 31.3 12.5 43.3 0z"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <div className="flex gap-5 items-center justify-center">
+            <div className="p-1 rounded-full transition-colors bg-secondary-blue"></div>
+            <div className="p-1 rounded-full transition-colors bg-secondary-blue/30"></div>
+            <div className="p-1 rounded-full transition-colors bg-secondary-blue/30"></div>
+            <div className="p-1 rounded-full transition-colors bg-secondary-blue/30"></div>
+          </div>
+        </section>
+
+        {/* Services List */}
+        <section className="relative md:px-20 px-4 space-y-8">
+          <div className="w-full flex flex-col justify-center space-y-4">
+            <h1 className="heading-2 text-primary-blue uppercase">Our Premium Event Management Services</h1>
+            <p className="text-primary-blue md:text-lg md:w-1/2">
+              We offer a complete suite of professional planning and coordination services to make your Jaffna celebration absolutely seamless and beautiful.
+            </p>
+          </div>
+          
+          <div className="bg-primary-white z-20">
+            {services.map((svc, idx) => (
+              <div key={idx} className="text-primary-blue py-4 md:text-2xl text-lg border-b-2 border-b-primary-blue/25 flex justify-between items-center group">
+                <div>
+                  <p className="group-hover:translate-x-2 transition-transform duration-300">{svc.name}</p>
+                </div>
+                <div className="md:flex hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <img 
+                    alt={`H2F Events Service - ${svc.name}`}
+                    loading="lazy" 
+                    width="1200" 
+                    height="1200" 
+                    className="h-[75px] w-[250px] object-cover object-center rounded-sm" 
+                    src={svc.img} 
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        
+      </section>
+      
+      <Footer />
     </>
   );
 }

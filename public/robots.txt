@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://h2f-events.pages.dev/sitemap.xml

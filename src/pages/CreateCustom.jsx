@@ -1,9 +1,412 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SEO from '../components/SEO';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function CreateCustom() {
+  const navigate = useNavigate();
+
+  // Selections State
+  const [backdrop, setBackdrop] = useState('round');
+  const [color, setColor] = useState('white');
+  const [flowers, setFlowers] = useState('rose');
+  const [decoElements, setDecoElements] = useState(['fairy lights']);
+  const [pathway, setPathway] = useState('candle-lit pathway');
+  const [addOns, setAddOns] = useState(['Photography']);
+  const [liveMusic, setLiveMusic] = useState('yes');
+  const [guests, setGuests] = useState('10–20');
+  const [venue, setVenue] = useState('Beach');
+  const [area, setArea] = useState('Jaffna');
+  const [experiences, setExperiences] = useState(['drone coverage']);
+  const [animals, setAnimals] = useState([]);
+
+  // Helpers to toggle multi-select options
+  const toggleDeco = (item) => {
+    if (decoElements.includes(item)) {
+      setDecoElements(decoElements.filter(d => d !== item));
+    } else {
+      setDecoElements([...decoElements, item]);
+    }
+  };
+
+  const toggleAddon = (item) => {
+    if (addOns.includes(item)) {
+      setAddOns(addOns.filter(a => a !== item));
+    } else {
+      setAddOns([...addOns, item]);
+    }
+  };
+
+  const toggleExperience = (item) => {
+    if (experiences.includes(item)) {
+      setExperiences(experiences.filter(e => e !== item));
+    } else {
+      setExperiences([...experiences, item]);
+    }
+  };
+
+  const toggleAnimal = (item) => {
+    if (animals.includes(item)) {
+      setAnimals(animals.filter(a => a !== item));
+    } else {
+      setAnimals([...animals, item]);
+    }
+  };
+
+  const handleNext = () => {
+    // Compile summary of custom selections
+    const summary = [
+      `Custom Package Selections:`,
+      `- Backdrop: ${backdrop}`,
+      `- Primary Color: ${color}`,
+      `- Flower Type: ${flowers}`,
+      `- Decoration Elements: ${decoElements.join(', ') || 'None'}`,
+      `- Pathway Style: ${pathway}`,
+      `- Add-ons Chosen: ${addOns.join(', ') || 'None'}`,
+      `- Live Music: ${liveMusic}`,
+      `- Expected Guests: ${guests}`,
+      `- Venue Style: ${venue}`,
+      `- Preferred Location Area: ${area}`,
+      `- Unique Experiences: ${experiences.join(', ') || 'None'}`,
+      `- Animal Experiences: ${animals.join(', ') || 'None'}`
+    ].join('\n');
+
+    // Encode and redirect to the book-now page
+    const encodedSummary = encodeURIComponent(summary);
+    navigate(`/book-now?package=custom&details=${encodedSummary}`);
+  };
+
   return (
     <>
-      <nav className="bg-secondary-blue py-4 px-8 fixed top-0 w-full hidden md:flex justify-between items-center z-40 text-primary-white"><a className="w-fit h-fit" href="index.html"><img alt="Logo" loading="lazy" width="50" height="50" decoding="async" data-nimg="1" className="w-[140px] h-auto" style={{"color":"transparent"}} src="/media/logo.7619682b.svg" /></a><div className="flex justify-center items-center gap-6"><a className="text-lg font-ostrovsky uppercase font-semibold" href="packages.html">packages</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="about-us.html">about us</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="gallery.html">gallery</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="book-now.html">Book Now</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="blog.html">blog</a><a className="bg-primary-white px-3 py-1 rounded-md text-secondary-blue uppercase font-semibold text-lg font-ostrovsky hover:bg-primary-blue hover:text-primary-white transition-colors" href="create-custom.html">Custom Package</a></div></nav><nav className="flex items-center justify-between md:hidden py-3 px-2 z-40 fixed top-0 w-full"><div className="w-fit text-secondary-blue px-2 relative"><svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect y="7" width="24" height="2" fill="currentColor"></rect><rect y="15" width="24" height="2" fill="currentColor"></rect></svg></div><a href="index.html"><img alt="Logo" loading="lazy" width="200" height="200" decoding="async" data-nimg="1" className="w-[90px]" style={{"color":"transparent"}} srcSet="" src="/media/imageb70d.png" /></a></nav><section className="py-20"><div><h1 className="heading-2 uppercase text-primary-blue font-semibold text-center">Build Your Ideal Event Package</h1></div><div className="flex flex-col items-center justify-center md:px-20 px-4 text-primary-blue font-semibold" style={{"opacity":"1"}}><div className="md:w-3/4 w-full mt-10 space-y-16"><div className="space-y-8"><p className="md:text-3xl text-xl">Main Decoration Setup</p><div className="space-y-16"><div className="space-y-4"><p>What type of event backdrop do you prefer?</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">heart-shaped</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">round</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">oval</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">square</p></div></div></div></div><div className="space-y-4"><p>Choose the primary color palette for your event</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">red</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">white</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">pink</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">mixed</p></div></div></div></div><div className="space-y-4"><p>What type of flower arrangement would you prefer?</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">rose</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">tropical flowers</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">sakura</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">hydrangea</p></div></div></div></div><div className="space-y-4"><p>Choose the elements you&#x27;d like to include in your decoration</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">candles</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">candle stands</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">lanterns</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">fairy lights</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">marquee letters</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">neon letters</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">red carpet</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">beakers</p></div></div></div></div><div className="space-y-4"><p>What kind of pathway design do you prefer?</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">rose petals</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">lantern-lit pathway</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">candle-lit pathway</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">flower bunch pathway</p></div></div></div></div></div></div><div className="space-y-8"><p className="md:text-3xl text-xl">Add-ons</p><div className="space-y-4"><p>Select any add-ons you&#x27;d like to include:</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Custom Cake</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Fireworks</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Cold Spark Machine</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Photography</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Videography</p></div></div></div></div></div><div className="space-y-8"><p className="md:text-3xl text-xl">Music &amp; Entertainment</p><div className="space-y-16"><div className="space-y-4"><p>Would you like live music?</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">yes</p></div></div></div></div></div></div><div className="space-y-8"><p className="md:text-3xl text-xl">Event Logistics</p><div className="space-y-16"><div className="space-y-4"><p>How many guests will be attending?</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">less than 10</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">10–20</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">20–50</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">more than 50</p></div></div></div></div><div className="space-y-4"><p>Venue Preferences</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Beach</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Rooftop</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Garden</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Lake View</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Indoor</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Unique Destination</p></div></div></div></div></div><div className="space-y-4"><p>What is your event date or time frame?</p><div className="grid gap-2"><button className="inline-flex items-center whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-neutral-300 border border-neutral-200 bg-white shadow-sm hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 h-9 px-4 py-2 w-[300px] justify-start text-left font-normal" id="date" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R2ebd7rpuja:" data-state="closed"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2 h-4 w-4"><path d="M4.5 1C4.77614 1 5 1.22386 5 1.5V2H10V1.5C10 1.22386 10.2239 1 10.5 1C10.7761 1 11 1.22386 11 1.5V2H12.5C13.3284 2 14 2.67157 14 3.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V3.5C1 2.67157 1.67157 2 2.5 2H4V1.5C4 1.22386 4.22386 1 4.5 1ZM10 3V3.5C10 3.77614 10.2239 4 10.5 4C10.7761 4 11 3.77614 11 3.5V3H12.5C12.7761 3 13 3.22386 13 3.5V5H2V3.5C2 3.22386 2.22386 3 2.5 3H4V3.5C4 3.77614 4.22386 4 4.5 4C4.77614 4 5 3.77614 5 3.5V3H10ZM2 6V12.5C2 12.7761 2.22386 13 2.5 13H12.5C12.7761 13 13 12.7761 13 12.5V6H2ZM7 7.5C7 7.22386 7.22386 7 7.5 7C7.77614 7 8 7.22386 8 7.5C8 7.77614 7.77614 8 7.5 8C7.22386 8 7 7.77614 7 7.5ZM9.5 7C9.22386 7 9 7.22386 9 7.5C9 7.77614 9.22386 8 9.5 8C9.77614 8 10 7.77614 10 7.5C10 7.22386 9.77614 7 9.5 7ZM11 7.5C11 7.22386 11.2239 7 11.5 7C11.7761 7 12 7.22386 12 7.5C12 7.77614 11.7761 8 11.5 8C11.2239 8 11 7.77614 11 7.5ZM11.5 9C11.2239 9 11 9.22386 11 9.5C11 9.77614 11.2239 10 11.5 10C11.7761 10 12 9.77614 12 9.5C12 9.22386 11.7761 9 11.5 9ZM9 9.5C9 9.22386 9.22386 9 9.5 9C9.77614 9 10 9.22386 10 9.5C10 9.77614 9.77614 10 9.5 10C9.22386 10 9 9.77614 9 9.5ZM7.5 9C7.22386 9 7 9.22386 7 9.5C7 9.77614 7.22386 10 7.5 10C7.77614 10 8 9.77614 8 9.5C8 9.22386 7.77614 9 7.5 9ZM5 9.5C5 9.22386 5.22386 9 5.5 9C5.77614 9 6 9.22386 6 9.5C6 9.77614 5.77614 10 5.5 10C5.22386 10 5 9.77614 5 9.5ZM3.5 9C3.22386 9 3 9.22386 3 9.5C3 9.77614 3.22386 10 3.5 10C3.77614 10 4 9.77614 4 9.5C4 9.22386 3.77614 9 3.5 9ZM3 11.5C3 11.2239 3.22386 11 3.5 11C3.77614 11 4 11.2239 4 11.5C4 11.7761 3.77614 12 3.5 12C3.22386 12 3 11.7761 3 11.5ZM5.5 11C5.22386 11 5 11.2239 5 11.5C5 11.7761 5.22386 12 5.5 12C5.77614 12 6 11.7761 6 11.5C6 11.2239 5.77614 11 5.5 11ZM7 11.5C7 11.2239 7.22386 11 7.5 11C7.77614 11 8 11.2239 8 11.5C8 11.7761 7.77614 12 7.5 12C7.22386 12 7 11.7761 7 11.5ZM9.5 11C9.22386 11 9 11.2239 9 11.5C9 11.7761 9.22386 12 9.5 12C9.77614 12 10 11.7761 10 11.5C10 11.2239 9.77614 11 9.5 11Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>Jul 08, 2026 - Jul 28, 2026</button></div></div><div className="space-y-4"><p>Preferred Area in Sri Lanka</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Colombo</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Kandy</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Negambo</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Bentota</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Galle (Southern)</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Other</p></div></div></div></div></div><div className="space-y-8"><p className="md:text-3xl text-xl">Unique Experiences</p><div className="space-y-4"><p>Which of the following unique experiences would you like to include?</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">private movie screening proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">helicopter proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">hot air balloon proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">yacht proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">hotel room transformation</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">flash mob marriage proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">firework sky marriage proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">sky lantern release</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">sky flower petals drop</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">drone coverage</p></div></div></div></div></div><div className="space-y-8"><div className="space-y-4"><p>Select animal experiences you&#x27;d like to include:</p><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Golden Retriever</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Elephants</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Horses</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Pigeon Release</p></div></div></div></div></div><div className="flex gap-6 mt-8"><button className="bg-secondary-blue text-primary-white rounded-md px-3 py-2 text-xl capitalize w-fit">Next</button></div></div></div></section><footer className="bg-black relative footer"><div className="w-full h-full z-20 text-primary-white py-20 md:px-10 px-4 flex md:flex-row flex-col gap-6 justify-between bg-black/60"><div className="w-fit h-full space-y-8"><a href="index.html"><img loading="lazy" width="600" height="600" decoding="async" data-nimg="1" className="object-contain w-[300px]" style={{"color":"transparent"}} src="/media/logo.7619682b.svg" /></a><div><span className="text-primary-white/70 px-4 md:text-lg font-normal">127/2 H, New Kandy road ,Siyabalapewaththa , Biyagama</span></div><div className="flex space-x-5 capitalize md:text-lg font-normal px-4  text-primary-white/70"><a className="w-fit h-fit" href="privacy-policy.html">Privacy Policy</a><a className="w-fit h-fit" href="terms-of-service.html">Terms of Service</a></div></div><div className="w-fit space-y-6"><p className="md:text-xl uppercase text-primary-white/70 font-bold">Links</p><div className="flex flex-col w-full md:text-lg text-sm uppercase gap-2 text-primary-white"><a className="font-bold w-fit" href="index.html">Home</a><a className="font-bold w-fit" href="packages.html">packages</a><a className="font-bold w-fit" href="about-us.html">about us</a><a className="font-bold w-fit" href="gallery.html">gallery</a><a className="font-bold w-fit" href="book-now.html">Book Now</a><a className="font-bold w-fit" href="blog.html">blog</a></div></div><div className="w-fit space-y-6"><p className="text-xl uppercase text-primary-white/70 font-bold">Social Medias</p><div className="flex gap-6 text-primary-white text-3xl flex-wrap items-center"><a target="_blank" rel="noreferrer" href="https://www.facebook.com/devent.eventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.instagram.com/devent.eventplanners/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/devent-team/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.youtube.com/@Deventeventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 576 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.pinterest.com/deventeventplanners/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 496 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@devent.eventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path></svg></a></div></div></div></footer>
+      <SEO
+        title="Build a Custom Event Package in Jaffna | H2F Events"
+        description="Design your dream celebration in Jaffna, Sri Lanka. Select themes, backdrops, flowers, custom lighting, photography add-ons, and unique proposal experiences."
+        keywords="custom wedding package jaffna, bespoke event planner sri lanka, design event jaffna, custom party planning"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Custom Event Package Builder",
+          "description": "Interactive planner to build and customize bespoke weddings, proposals, birthdays, and anniversaries in Jaffna, Sri Lanka.",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "H2F Events"
+          }
+        }}
+      />
+      <Navbar />
+      
+      <section className="py-20">
+        <div className="py-4">
+          <h1 className="heading-2 uppercase text-primary-blue font-semibold text-center">Build Your Ideal Event Package</h1>
+        </div>
+        
+        <div className="flex flex-col items-center justify-center md:px-20 px-4 text-primary-blue font-semibold">
+          <div className="md:w-3/4 w-full mt-10 space-y-16">
+            
+            {/* 1. Main Decoration Setup */}
+            <div className="space-y-8">
+              <p className="md:text-3xl text-xl border-b pb-2 border-secondary-blue/10">1. Main Decoration Setup</p>
+              
+              <div className="space-y-10">
+                {/* Backdrop Selection */}
+                <div className="space-y-4">
+                  <p className="text-lg">What type of event backdrop do you prefer?</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['heart-shaped', 'round', 'oval', 'square'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setBackdrop(item)}
+                        className={`p-3 border rounded-md capitalize font-semibold transition-all ${
+                          backdrop === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Color Palette */}
+                <div className="space-y-4">
+                  <p className="text-lg">Choose the primary color palette for your event</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['red', 'white', 'pink', 'mixed'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setColor(item)}
+                        className={`p-3 border rounded-md capitalize font-semibold transition-all ${
+                          color === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Flower Arrangement */}
+                <div className="space-y-4">
+                  <p className="text-lg">What type of flower arrangement would you prefer?</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['rose', 'tropical flowers', 'sakura', 'hydrangea'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setFlowers(item)}
+                        className={`p-3 border rounded-md capitalize font-semibold transition-all ${
+                          flowers === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Deco Elements (Multi-select) */}
+                <div className="space-y-4">
+                  <p className="text-lg">Choose the elements you'd like to include in your decoration (Select all that apply)</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['candles', 'candle stands', 'lanterns', 'fairy lights', 'marquee letters', 'neon letters', 'red carpet', 'beakers'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => toggleDeco(item)}
+                        className={`p-3 border rounded-md capitalize font-semibold transition-all ${
+                          decoElements.includes(item)
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Pathway Design */}
+                <div className="space-y-4">
+                  <p className="text-lg">What kind of pathway design do you prefer?</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['rose petals', 'lantern-lit pathway', 'candle-lit pathway', 'flower bunch pathway'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setPathway(item)}
+                        className={`p-3 border rounded-md capitalize font-semibold transition-all ${
+                          pathway === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Add-ons (Multi-select) */}
+            <div className="space-y-8">
+              <p className="md:text-3xl text-xl border-b pb-2 border-secondary-blue/10">2. Add-ons & Media Services</p>
+              <div className="space-y-4">
+                <p className="text-lg">Select any add-ons you'd like to include:</p>
+                <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                  {['Custom Cake', 'Fireworks', 'Cold Spark Machine', 'Photography', 'Videography'].map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => toggleAddon(item)}
+                      className={`p-3 border rounded-md font-semibold transition-all ${
+                        addOns.includes(item)
+                          ? 'bg-secondary-blue text-white border-secondary-blue' 
+                          : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Music & Entertainment */}
+            <div className="space-y-8">
+              <p className="md:text-3xl text-xl border-b pb-2 border-secondary-blue/10">3. Music & Entertainment</p>
+              <div className="space-y-4">
+                <p className="text-lg">Would you like live music coordination?</p>
+                <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                  {['yes', 'no'].map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => setLiveMusic(item)}
+                      className={`p-3 border rounded-md capitalize font-semibold transition-all ${
+                        liveMusic === item 
+                          ? 'bg-secondary-blue text-white border-secondary-blue' 
+                          : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Event Logistics */}
+            <div className="space-y-8">
+              <p className="md:text-3xl text-xl border-b pb-2 border-secondary-blue/10">4. Event Logistics</p>
+              <div className="space-y-10">
+                {/* Guest Count */}
+                <div className="space-y-4">
+                  <p className="text-lg">How many guests will be attending?</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['less than 10', '10–20', '20–50', 'more than 50'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setGuests(item)}
+                        className={`p-3 border rounded-md font-semibold transition-all ${
+                          guests === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Venue Preference */}
+                <div className="space-y-4">
+                  <p className="text-lg">Venue Preferences</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['Beach', 'Rooftop', 'Garden', 'Lake View', 'Indoor', 'Unique Destination'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setVenue(item)}
+                        className={`p-3 border rounded-md font-semibold transition-all ${
+                          venue === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Area Preferences */}
+                <div className="space-y-4">
+                  <p className="text-lg">Preferred Area in Sri Lanka (H2F specializes in Jaffna & Northern Province)</p>
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                    {['Jaffna', 'Colombo', 'Kandy', 'Bentota', 'Galle (Southern)', 'Other'].map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setArea(item)}
+                        className={`p-3 border rounded-md font-semibold transition-all ${
+                          area === item 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Unique Experiences */}
+            <div className="space-y-8">
+              <p className="md:text-3xl text-xl border-b pb-2 border-secondary-blue/10">5. Unique Proposal Experiences</p>
+              <div className="space-y-4">
+                <p className="text-lg">Which of the following unique experiences would you like to include?</p>
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                  {[
+                    'private movie screening proposal',
+                    'helicopter proposal',
+                    'hot air balloon proposal',
+                    'yacht proposal',
+                    'hotel room transformation',
+                    'flash mob marriage proposal',
+                    'firework sky marriage proposal',
+                    'sky lantern release',
+                    'sky flower petals drop',
+                    'drone coverage'
+                  ].map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => toggleExperience(item)}
+                      className={`p-3 border rounded-md capitalize font-semibold transition-all text-left ${
+                        experiences.includes(item)
+                          ? 'bg-secondary-blue text-white border-secondary-blue' 
+                          : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 6. Animal Experiences */}
+            <div className="space-y-8">
+              <p className="md:text-3xl text-xl border-b pb-2 border-secondary-blue/10">6. Custom Elements & Animal Releases</p>
+              <div className="space-y-4">
+                <p className="text-lg">Select animal experiences you'd like to include:</p>
+                <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                  {['Golden Retriever', 'Elephants', 'Horses', 'Pigeon Release'].map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => toggleAnimal(item)}
+                      className={`p-3 border rounded-md font-semibold transition-all ${
+                        animals.includes(item)
+                          ? 'bg-secondary-blue text-white border-secondary-blue' 
+                          : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Next Button */}
+            <div className="flex gap-6 mt-8 justify-center md:justify-start">
+              <button 
+                onClick={handleNext}
+                className="bg-secondary-blue hover:bg-primary-blue text-primary-white rounded-md px-8 py-3 text-xl font-bold transition-all shadow-md hover:shadow-lg cursor-pointer"
+              >
+                Proceed to Reservation
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
     </>
   );
 }

@@ -1,9 +1,354 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import SEO from '../components/SEO';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function BookNow() {
+  const location = useLocation();
+
+  // Form State
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [whereFrom, setWhereFrom] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('Jaffna');
+  const [selectedType, setSelectedType] = useState('Surprise Proposal');
+  const [budget, setBudget] = useState('Simple | USD 350-700');
+  const [referral, setReferral] = useState('Instagram');
+  const [description, setDescription] = useState('');
+  const [agreed, setAgreed] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Pre-fill package selection from URL query params
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const pkgId = params.get('package');
+    const details = params.get('details');
+    
+    if (pkgId === 'custom' && details) {
+      setDescription(decodeURIComponent(details));
+      setSelectedType('Other');
+    } else if (pkgId) {
+      const packageNames = {
+        'pinkish-sunset-city-cruise': 'Pinkish Sunset City Cruise',
+        'golden-shore-promise': 'Golden Shore Promise',
+        'scarlet-fairy-garden': 'Scarlet Fairy Garden',
+        'pinky-love-rose': 'Pinky Love Rose'
+      };
+      
+      const pkgName = packageNames[pkgId] || pkgId;
+      setDescription(`Hi H2F Events! I would love to inquire about the "${pkgName}" package for my upcoming event. Please share more details.`);
+      
+      // If it's a proposal package, pre-select type
+      if (pkgId.includes('promise') || pkgId.includes('cruise')) {
+        setSelectedType('Surprise Proposal');
+      } else if (pkgId.includes('garden')) {
+        setSelectedType('Anniversary Celebration');
+      }
+    }
+  }, [location.search]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !phone || !agreed) return;
+    
+    // In a real app, this would send data to an API or database.
+    console.log({
+      name,
+      email,
+      phone,
+      whereFrom,
+      eventLocation: selectedLocation,
+      eventType: selectedType,
+      budget,
+      referral,
+      description,
+      agreed
+    });
+    
+    setSubmitted(true);
+  };
+
+  const locationsList = [
+    'Jaffna',
+    'Colombo',
+    'Negombo',
+    'Galle',
+    'Bentota',
+    'Kandy',
+    'Ella',
+    'Other (upon request)'
+  ];
+
+  const typesList = [
+    'Surprise Proposal',
+    'Luxury Wedding',
+    'Anniversary Celebration',
+    'Romantic Birthday',
+    'Corporate Gala',
+    'Room Transformation',
+    'Other'
+  ];
+
+  const budgetsList = [
+    'Simple | USD 350-700',
+    'Standard | USD 700-1,500',
+    'Gold | USD 1,500-2,500',
+    'Diamond | USD 2,500-5,000'
+  ];
+
+  const referralsList = [
+    'Instagram',
+    'Facebook',
+    'TikTok',
+    'Google Search',
+    'Website',
+    'Family/Friend'
+  ];
+
   return (
     <>
-      <nav className="bg-secondary-blue py-4 px-8 fixed top-0 w-full hidden md:flex justify-between items-center z-40 text-primary-white"><a className="w-fit h-fit" href="index.html"><img alt="Logo" loading="lazy" width="50" height="50" decoding="async" data-nimg="1" className="w-[140px] h-auto" style={{"color":"transparent"}} src="/media/logo.7619682b.svg" /></a><div className="flex justify-center items-center gap-6"><a className="text-lg font-ostrovsky uppercase font-semibold" href="packages.html">packages</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="about-us.html">about us</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="gallery.html">gallery</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="book-now.html">Book Now</a><a className="text-lg font-ostrovsky uppercase font-semibold" href="blog.html">blog</a><a className="bg-primary-white px-3 py-1 rounded-md text-secondary-blue uppercase font-semibold text-lg font-ostrovsky hover:bg-primary-blue hover:text-primary-white transition-colors" href="create-custom.html">Custom Package</a></div></nav><nav className="flex items-center justify-between md:hidden py-3 px-2 z-40 fixed top-0 w-full"><div className="w-fit text-secondary-blue px-2 relative"><svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect y="7" width="24" height="2" fill="currentColor"></rect><rect y="15" width="24" height="2" fill="currentColor"></rect></svg></div><a href="index.html"><img alt="Logo" loading="lazy" width="200" height="200" decoding="async" data-nimg="1" className="w-[90px]" style={{"color":"transparent"}} srcSet="" src="/media/imageb70d.png" /></a></nav><section><main className="flex flex-col w-full py-20 md:px-20 px-4 space-y-8"><div className="flex md:flex-row flex-col gap-8 py-5"><div className="w-2/3 flex flex-col space-y-10"><div className="w-full text flex flex-col space-y-3"><h1 className="heading-2 text-secondary-blue leading-none">Let&#x27;s find the right option for you!</h1><h2 className="text-primary-blue text-lg">At DEVENT, we take a personal approach to every event. Submit your inquiry below, and a member of our team will contact you shortly to start planning your special occasion.</h2></div><div><img alt="Image" loading="lazy" width="1200" height="1200" decoding="async" data-nimg="1" className="rounded-md h-[300px] object-cover" style={{"color":"transparent","backgroundSize":"cover","backgroundPosition":"50% 50%","backgroundRepeat":"no-repeat","backgroundImage":"url(_data_image/svg%2bxml%3bcharset%3dutf-8%2c_svg%20xmlns%3d%27http_/www.w3.org/2000/svg%27%20viewBox%3d%270%200%20320%20200%27__filter%20id%3d%27b%27%20color/__feColorMatrix%20values%3d%271%200%200%200%200%200%201%200%200%200%200%200/__feFlo/filter__image%20width%3d%2710)","data":"image/webp"}} srcSet="" src="/media/imageac34.jpg" /></div></div><div className="w-full space-y-8 font-medium"><input className="md:w-5/6 w-full bg-secondary-blue/30 text-primary-blue focus:outline-primary-blue placeholder:text-primary-blue rounded-md py-3 px-2 md:text-lg" type="text" placeholder="Name *" required="" autoComplete="off" name="name" value="" /><input className="md:w-5/6 w-full bg-secondary-blue/30 text-primary-blue focus:outline-primary-blue placeholder:text-primary-blue rounded-md py-3 px-2 md:text-lg" type="text" placeholder="Email *" required="" autoComplete="off" name="email" value="" /><div className="md:w-5/6 w-full flex gap-2"><div className="w-48"><div className="css-b62m3t-container"><span id="react-select-2-live-region" className="css-7pg0cj-a11yText"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log" className="css-7pg0cj-a11yText"></span><div className="css-1efrh4x-control"><div className="css-hlgwow"><div className="css-2jduwk-singleValue">+94, Sri Lanka</div><div className="css-19bb58m" data-value=""><input className="" style={{"label":"input","color":"inherit","background":"0","opacity":"1","width":"100%","gridArea":"1 / 2","font":"inherit","minWidth":"2px","border":"0","margin":"0","outline":"0","padding":"0"}} autoCapitalize="none" autoComplete="off" autoCorrect="off" id="react-select-2-input" spellCheck="false" tabindex="0" type="text" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-activedescendant="" value="" /></div></div><div className="css-1wy0on6"><span className="css-1hyfx7x"></span><div className="css-1jism97-indicatorContainer" aria-hidden="true"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" className="css-8mmkcg"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></div></div></div></div></div><input className="flex-1 bg-secondary-blue/30 text-primary-blue focus:outline-primary-blue placeholder:text-primary-blue rounded-md py-3 px-2 md:text-lg" type="tel" required="" placeholder="Phone Number *" autoComplete="off" name="phone" value="" /></div><input className="md:w-5/6 w-full bg-secondary-blue/30 text-primary-blue focus:outline-primary-blue placeholder:text-primary-blue rounded-md py-3 px-2 md:text-lg" type="text" placeholder="Which Country/City are you from? *" required="" autoComplete="off" name="whereFrom" value="" /><div><label className="block mb-2 text-primary-blue font-semibold">Event Location *</label><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Colombo</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Negombo</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Galle</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Tangalle</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Mirissa</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Bentota</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Hikkaduwa</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Beruwala</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Kandy</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Ella</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Sigiriya</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Other locations (available upon request)</p></div></div></div></div><div><label className="block mb-2 text-primary-blue font-semibold">Event Type *</label><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Romantic Dinner Setup</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Anniversary Celebration</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Hotel Room Transformation</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Surprise Proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Girlfriend Proposal</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Romantic Birthday</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Other</p></div></div></div></div><div><label className="block mb-2 text-primary-blue font-semibold">Event Date or Time Frame</label><div className="grid gap-2"><button className="inline-flex items-center whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-neutral-300 border border-neutral-200 bg-white shadow-sm hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 h-9 px-4 py-2 w-[300px] justify-start text-left font-normal" id="date" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R9t7rpuja:" data-state="closed"><span className="mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="inline-block"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>Jul 06, 2026 - Jul 07, 2026</button></div></div><div><label className="block mb-2 text-primary-blue font-semibold">Estimated Budget *</label><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Simple | USD 350-700 </p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Standard | USD 700-1,500 </p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Gold | USD 1,500-2,500 </p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Diamond | USD 2,500-5,000 </p></div></div></div></div><div><label className="block mb-2 text-primary-blue font-semibold">How did you hear about us? *</label><div className="grid md:grid-cols-4 grid-cols-2 gap-6 "><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Instagram</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Facebook</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">TikTok</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Google Search</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Website</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Friend / Family Referral</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Wedding Planner / Event Partner</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Hotel / Venue Recommendation</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Previous Client</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Advertisement</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">ChatGPT / AI</p></div></div><div className="p-2 rounded-md cursor-pointer h-fit"><div className="cursor-pointer flex flex-col items-center justify-center"><p className="text-center w-full font-semibold capitalize">Other (please specify)</p></div></div></div></div><textarea className="md:w-5/6 w-full bg-secondary-blue/30 text-primary-blue focus:outline-primary-blue placeholder:text-primary-blue rounded-md py-3 px-2 md:text-lg" rows="5" name="description" placeholder="Tell us about your event" autoComplete="off"></textarea><div className="flex items-center space-x-2"><input type="checkbox" id="agreed" className="w-5 h-5 accent-primary-blue" required="" name="agreed" /><label htmlFor="agreed" className="text-primary-blue">I have read, understood, and agree to the <a target="_blank" rel="noopener noreferrer" className="underline text-secondary-blue" href="terms-and-conditions.html">Terms and Conditions of DEVENT</a>.</label></div><div className="w-full flex md:justify-start justify-center"><button className="md:text-lg font-bold text-primary-white bg-secondary-blue hover:bg-primary-blue px-8 py-2 text-center rounded-lg" disabled="" style={{"opacity":"0.5","cursor":"not-allowed"}}>Send</button><div className="Toastify"></div></div></div></div></main></section><footer className="bg-black relative footer"><div className="w-full h-full z-20 text-primary-white py-20 md:px-10 px-4 flex md:flex-row flex-col gap-6 justify-between bg-black/60"><div className="w-fit h-full space-y-8"><a href="index.html"><img loading="lazy" width="600" height="600" decoding="async" data-nimg="1" className="object-contain w-[300px]" style={{"color":"transparent"}} src="/media/logo.7619682b.svg" /></a><div><span className="text-primary-white/70 px-4 md:text-lg font-normal">127/2 H, New Kandy road ,Siyabalapewaththa , Biyagama</span></div><div className="flex space-x-5 capitalize md:text-lg font-normal px-4  text-primary-white/70"><a className="w-fit h-fit" href="privacy-policy.html">Privacy Policy</a><a className="w-fit h-fit" href="terms-of-service.html">Terms of Service</a></div></div><div className="w-fit space-y-6"><p className="md:text-xl uppercase text-primary-white/70 font-bold">Links</p><div className="flex flex-col w-full md:text-lg text-sm uppercase gap-2 text-primary-white"><a className="font-bold w-fit" href="index.html">Home</a><a className="font-bold w-fit" href="packages.html">packages</a><a className="font-bold w-fit" href="about-us.html">about us</a><a className="font-bold w-fit" href="gallery.html">gallery</a><a className="font-bold w-fit" href="book-now.html">Book Now</a><a className="font-bold w-fit" href="blog.html">blog</a></div></div><div className="w-fit space-y-6"><p className="text-xl uppercase text-primary-white/70 font-bold">Social Medias</p><div className="flex gap-6 text-primary-white text-3xl flex-wrap items-center"><a target="_blank" rel="noreferrer" href="https://www.facebook.com/devent.eventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.instagram.com/devent.eventplanners/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/devent-team/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.youtube.com/@Deventeventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 576 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.pinterest.com/deventeventplanners/"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 496 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"></path></svg></a><a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@devent.eventplanners"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path></svg></a></div></div></div></footer>
+      <SEO
+        title="Book an Event Planner in Jaffna, Sri Lanka | H2F Events"
+        description="Ready to plan your next event? Contact H2F Events in Jaffna to book a consultation. Compare budget-friendly and premium packages for weddings, proposals, birthdays, and corporate events."
+        keywords="book event planner jaffna, hire wedding planner jaffna, event organizers sri lanka, contact h2f events, reserve event coordinator"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Book a Consultation - H2F Events",
+          "description": "Contact form to request event planning services and book consultations for weddings, birthdays, corporate functions, and romantic proposals in Jaffna, Sri Lanka.",
+          "url": "https://h2f-events.pages.dev/book-now"
+        }}
+      />
+      <Navbar />
+      
+      <section className="py-20 md:px-10 px-4">
+        <main className="flex flex-col w-full py-10 md:px-20 px-0 space-y-8">
+          
+          {submitted ? (
+            <div className="bg-green-50 border border-green-200 text-primary-blue p-8 rounded-lg text-center max-w-2xl mx-auto space-y-4">
+              <h3 className="heading-2 text-green-700">Thank you, {name}!</h3>
+              <p className="text-lg">
+                Your event inquiry has been sent successfully. One of our senior Jaffna coordinators will contact you via email ({email}) or phone ({phone}) within 24 hours to begin planning.
+              </p>
+              <button 
+                onClick={() => { setSubmitted(false); setName(''); setEmail(''); setPhone(''); setDescription(''); }}
+                className="bg-secondary-blue text-white px-6 py-2 rounded-md hover:bg-primary-blue transition-colors font-bold mt-4"
+              >
+                Inquire for Another Event
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-8 py-5">
+              
+              {/* Left Side Content */}
+              <div className="w-full md:w-1/3 flex flex-col space-y-6">
+                <div className="w-full text flex flex-col space-y-3">
+                  <h1 className="heading-2 text-secondary-blue leading-none">Let's find the right option for you!</h1>
+                  <h2 className="text-primary-blue text-lg">
+                    At H2F Events, we take a personalized approach to every Jaffna celebration. Submit your inquiry below, and a member of our planning team will contact you shortly.
+                  </h2>
+                </div>
+                <div>
+                  <img 
+                    alt="Luxury outdoor dining layout in Jaffna Sri Lanka by H2F Events" 
+                    loading="lazy" 
+                    width="1200" 
+                    height="1200" 
+                    className="rounded-md h-[300px] w-full object-cover" 
+                    src="/media/imageac34.jpg" 
+                  />
+                </div>
+              </div>
+              
+              {/* Right Side Form Inputs */}
+              <div className="w-full md:w-2/3 space-y-6 font-medium">
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                  <input 
+                    className="w-full bg-secondary-blue/10 text-primary-blue border border-secondary-blue/20 focus:border-secondary-blue focus:outline-none placeholder:text-primary-blue/60 rounded-md py-3 px-3 md:text-lg" 
+                    type="text" 
+                    placeholder="Name *" 
+                    required 
+                    autoComplete="name" 
+                    name="name" 
+                    value={name} 
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <input 
+                    className="w-full bg-secondary-blue/10 text-primary-blue border border-secondary-blue/20 focus:border-secondary-blue focus:outline-none placeholder:text-primary-blue/60 rounded-md py-3 px-3 md:text-lg" 
+                    type="email" 
+                    placeholder="Email *" 
+                    required 
+                    autoComplete="email" 
+                    name="email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                  <input 
+                    className="w-full bg-secondary-blue/10 text-primary-blue border border-secondary-blue/20 focus:border-secondary-blue focus:outline-none placeholder:text-primary-blue/60 rounded-md py-3 px-3 md:text-lg" 
+                    type="tel" 
+                    required 
+                    placeholder="Phone Number *" 
+                    autoComplete="tel" 
+                    name="phone" 
+                    value={phone} 
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                  <input 
+                    className="w-full bg-secondary-blue/10 text-primary-blue border border-secondary-blue/20 focus:border-secondary-blue focus:outline-none placeholder:text-primary-blue/60 rounded-md py-3 px-3 md:text-lg" 
+                    type="text" 
+                    placeholder="Which Country/City are you from? *" 
+                    required 
+                    autoComplete="off" 
+                    name="whereFrom" 
+                    value={whereFrom} 
+                    onChange={(e) => setWhereFrom(e.target.value)}
+                  />
+                </div>
+                
+                {/* Location Selection */}
+                <div>
+                  <label className="block mb-2 text-primary-blue font-semibold">Event Location *</label>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {locationsList.map((loc) => (
+                      <button
+                        key={loc}
+                        type="button"
+                        onClick={() => setSelectedLocation(loc)}
+                        className={`p-2 border rounded-md font-semibold text-center transition-all ${
+                          selectedLocation === loc 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {loc}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Event Type Selection */}
+                <div>
+                  <label className="block mb-2 text-primary-blue font-semibold">Event Type *</label>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {typesList.map((type) => (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => setSelectedType(type)}
+                        className={`p-2 border rounded-md font-semibold text-center transition-all text-sm ${
+                          selectedType === type 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Budget Selection */}
+                <div>
+                  <label className="block mb-2 text-primary-blue font-semibold">Estimated Budget *</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {budgetsList.map((bg) => (
+                      <button
+                        key={bg}
+                        type="button"
+                        onClick={() => setBudget(bg)}
+                        className={`p-2 border rounded-md font-semibold text-center transition-all ${
+                          budget === bg 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {bg}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Referral Selection */}
+                <div>
+                  <label className="block mb-2 text-primary-blue font-semibold">How did you hear about us? *</label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                    {referralsList.map((ref) => (
+                      <button
+                        key={ref}
+                        type="button"
+                        onClick={() => setReferral(ref)}
+                        className={`p-2 border rounded-md font-semibold text-center transition-all text-sm ${
+                          referral === ref 
+                            ? 'bg-secondary-blue text-white border-secondary-blue' 
+                            : 'bg-white text-primary-blue border-secondary-blue/20 hover:bg-slate-50'
+                        }`}
+                      >
+                        {ref}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Description */}
+                <div>
+                  <label className="block mb-2 text-primary-blue font-semibold">Tell us about your event</label>
+                  <textarea 
+                    className="w-full bg-secondary-blue/10 text-primary-blue border border-secondary-blue/20 focus:border-secondary-blue focus:outline-none placeholder:text-primary-blue/60 rounded-md py-3 px-3 md:text-lg" 
+                    rows="4" 
+                    name="description" 
+                    placeholder="Provide details about guest count, layout dreams, specific requests..." 
+                    autoComplete="off"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  ></textarea>
+                </div>
+                
+                {/* Agreement Checkbox */}
+                <div className="flex items-start space-x-2">
+                  <input 
+                    type="checkbox" 
+                    id="agreed" 
+                    className="w-5 h-5 accent-primary-blue mt-1" 
+                    required 
+                    checked={agreed}
+                    onChange={(e) => setAgreed(e.target.checked)}
+                  />
+                  <label htmlFor="agreed" className="text-primary-blue text-sm">
+                    I have read, understood, and agree to the{' '}
+                    <a target="_blank" rel="noopener noreferrer" className="underline text-secondary-blue" href="/terms-and-conditions">
+                      Terms and Conditions of H2F Events
+                    </a>
+                    .
+                  </label>
+                </div>
+                
+                {/* Submit Button */}
+                <div className="w-full flex md:justify-start justify-center">
+                  <button 
+                    type="submit"
+                    className={`md:text-lg font-bold text-primary-white px-8 py-3 text-center rounded-lg transition-colors ${
+                      agreed 
+                        ? 'bg-secondary-blue hover:bg-primary-blue cursor-pointer' 
+                        : 'bg-secondary-blue/50 cursor-not-allowed'
+                    }`}
+                    disabled={!agreed}
+                  >
+                    Send Inquiry
+                  </button>
+                </div>
+                
+              </div>
+            </form>
+          )}
+        </main>
+      </section>
+      
+      <Footer />
     </>
   );
 }

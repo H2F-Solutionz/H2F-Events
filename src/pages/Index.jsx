@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useAnimate } from 'framer-motion';
+import SEO from '../components/SEO';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 // Reusable Heart Effect Button Component
 function HeartButton({ href, children, classIdentifier, className, spanClassName }) {
@@ -188,32 +191,41 @@ export default function Index() {
 
   return (
     <>
-      {/* Header Navigation */}
-      <nav className="bg-secondary-blue py-4 px-8 fixed top-0 w-full hidden md:flex justify-between items-center z-40 text-primary-white">
-        <a className="w-fit h-fit" href="index.html">
-          <img alt="Logo" loading="lazy" width="50" height="50" decoding="async" className="w-[200px] h-auto" src="/media/logoevent.png" />
-        </a>
-        <div className="flex justify-center items-center gap-6">
-          <a className="text-lg font-ostrovsky uppercase font-semibold hover:text-primary-white/80 transition-colors" href="collections.html">Collections</a>
-          <a className="text-lg font-ostrovsky uppercase font-semibold hover:text-primary-white/80 transition-colors" href="our-story.html">Our Story</a>
-          <a className="text-lg font-ostrovsky uppercase font-semibold hover:text-primary-white/80 transition-colors" href="portfolio.html">Portfolio</a>
-          <a className="text-lg font-ostrovsky uppercase font-semibold hover:text-primary-white/80 transition-colors" href="reserve.html">Reserve</a>
-          <a className="text-lg font-ostrovsky uppercase font-semibold hover:text-primary-white/80 transition-colors" href="journal.html">Journal</a>
-          <a className="bg-primary-white px-3 py-1 rounded-md text-secondary-blue uppercase font-semibold text-lg font-ostrovsky hover:bg-primary-blue hover:text-primary-white transition-colors" href="bespoke.html">Bespoke Package</a>
-        </div>
-      </nav>
-
-      <nav className="flex items-center justify-between md:hidden py-3 px-2 z-40 fixed top-0 w-full bg-secondary-blue/90 backdrop-blur-sm">
-        <div className="w-fit text-primary-white px-2 relative">
-          <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <rect y="7" width="24" height="2" fill="currentColor"></rect>
-            <rect y="15" width="24" height="2" fill="currentColor"></rect>
-          </svg>
-        </div>
-        <a href="index.html">
-          <img alt="Logo" loading="lazy" width="200" height="200" className="w-[120px]" src="/media/logoevent.png" />
-        </a>
-      </nav>
+      <SEO
+        title="Event Planners in Jaffna, Sri Lanka | Budget & Premium - H2F Events"
+        description="Find all budget-friendly and premium event planners in Jaffna, Sri Lanka in one place. H2F Events manages luxury weddings, corporate galas, birthdays, and traditional Tamil ceremonies."
+        keywords="event planners jaffna, event management sri lanka, wedding planners jaffna, best event planners in jaffna, budget event planners jaffna, premium wedding planners jaffna"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": ["LocalBusiness", "EventPlanner"],
+          "@id": "https://h2f-events.pages.dev/#business",
+          "name": "H2F Events",
+          "image": "https://h2f-events.pages.dev/media/logoevent.png",
+          "description": "H2F Events is Northern Sri Lanka's premier event management platform and planner, connecting you with budget-friendly to luxury event planning services in Jaffna.",
+          "url": "https://h2f-events.pages.dev/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "42 Temple Road, Nallur",
+            "addressLocality": "Jaffna",
+            "addressRegion": "Northern Province",
+            "postalCode": "40000",
+            "addressCountry": "LK"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 9.6684,
+            "longitude": 80.0244
+          },
+          "sameAs": [
+            "https://www.facebook.com/devent.eventplanners",
+            "https://www.instagram.com/devent.eventplanners/",
+            "https://www.youtube.com/@Deventeventplanners",
+            "https://www.pinterest.com/deventeventplanners/",
+            "https://www.tiktok.com/@devent.eventplanners"
+          ]
+        }}
+      />
+      <Navbar />
 
       {/* 1. Hero Zoom Parallax Section */}
       <main ref={containerRef} className="h-[300vh] relative">
@@ -570,37 +582,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black relative footer">
-        <div className="w-full h-full z-20 text-primary-white py-20 md:px-10 px-4 flex md:flex-row flex-col gap-6 justify-between bg-black/60">
-          <div className="w-fit h-full space-y-8">
-            <a href="index.html">
-              <img className="object-contain w-[300px]" src="/media/logoevent.png" alt="Logo" />
-            </a>
-            <div>
-              <span className="text-primary-white/70 px-4 md:text-lg font-normal">
-                42 Temple Road, Nallur, Jaffna, Northern Province, Sri Lanka
-              </span>
-            </div>
-            <div className="flex space-x-5 capitalize md:text-lg font-normal px-4 text-primary-white/70">
-              <a className="w-fit h-fit hover:text-white" href="privacy-policy.html">Privacy Policy</a>
-              <a className="w-fit h-fit hover:text-white" href="terms-of-service.html">Terms of Service</a>
-            </div>
-          </div>
-
-          <div className="w-fit space-y-6">
-            <p className="md:text-xl uppercase text-primary-white/70 font-bold">Navigation</p>
-            <div className="flex flex-col w-full md:text-lg text-sm uppercase gap-2 text-primary-white">
-              <a className="font-bold w-fit hover:text-secondary-blue" href="index.html">Home</a>
-              <a className="font-bold w-fit hover:text-secondary-blue" href="collections.html">Collections</a>
-              <a className="font-bold w-fit hover:text-secondary-blue" href="our-story.html">Our Story</a>
-              <a className="font-bold w-fit hover:text-secondary-blue" href="portfolio.html">Portfolio</a>
-              <a className="font-bold w-fit hover:text-secondary-blue" href="reserve.html">Reserve</a>
-              <a className="font-bold w-fit hover:text-secondary-blue" href="journal.html">Journal</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
